@@ -11,8 +11,14 @@ Retorna 4
 """
 
 def comptaLA(frase):
-    
-    
-    return
+    fraseMinus = frase.lower()
+    comptador = 0
+    for i in range(len(fraseMinus)):
+        if fraseMinus[i] == "l":
+            if fraseMinus[i+1] == "a":
+                comptador += 1
+    return comptador
 
 frase = input("Introdueix una frase: ")
+
+print(comptaLA(frase))
