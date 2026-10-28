@@ -21,27 +21,37 @@ shutil.copy2(src, dst)
 os.makedirs(os.path.dirname(desti), exist_ok=True)
 os.path.isdir(path)
 """
+
 import os
 import shutil
 
 
-def copiaDades(origen, desti):
-    nom = os.path.basename(origen.rstrip("/"))
-    copia = os.path.join(desti, nom)
+origens=['/DAW2/proves/origen1','/DAW2/proves/origen2', '/DAW2/proves/fitxer.txt', '/DAW2/imatges']
+desti = '/DAW2/copies'
 
+
+def copiaDades(origen, desti):
+    nom = os.path.basename(origen)
+    copia = os.path.join(desti, nom)
     if os.path.isdir(origen):
-        shutil.copytree(origen, copia, dirs_exist_ok=True)
-        print("Carpeta copiada:", origen, "->", copia)
-    elif os.path.isfile(origen):
+        print(f"Es un directori: {origen}", desti)
+        print(copia)
+        shutil.copytree(origen,copia, dirs_exist_ok=True)
+        
+    elif os.path.isfile(origen): 
+        print(f"Es un arxiu: {origen}", desti)
+        print(copia)
+        
         os.makedirs(os.path.dirname(copia), exist_ok=True)
         shutil.copy2(origen, copia)
-        print("Fitxer copiat:", origen, "->", copia)
+
+        
     else:
-        print("No existeix:", origen)
+        print(f"No existeix: {origen}")
+        
+    
+    
+if __name__ == '__main__':
+    for recorre in origens:
+        copiaDades(recorre,desti)
 
-
-origens = ['/home/usuari/', '/root/', '/etc/', '/dades/']
-desti = '/copies/'
-
-for origen in origens:
-    copiaDades(origen, desti)
