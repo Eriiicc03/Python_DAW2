@@ -33,3 +33,12 @@ os.path.isdir(path)
  
 
 """
+
+import os
+import exercici1
+origen = '/home/eriiicc03/Documentos/DAW2/MP01 - Programació amb Frameworks/RA1. Python/DAW2/proves/fitxer.txt'
+desti = '/home/eriiicc03/Documentos/DAW2/MP01 - Programació amb Frameworks/RA1. Python/DAW2/copies'
+
+ncopies = 3
+
+exercici1.copiaDades(origen, desti)   

@@ -25,9 +25,11 @@ os.path.isdir(path)
 import os
 import shutil
 
+#origens=['/DAW2/proves/origen1','/DAW2/proves/origen2', '/DAW2/proves/fitxer.txt', '/DAW2/imatges']
+#desti = '/DAW2/copies'
 
-origens=['/DAW2/proves/origen1','/DAW2/proves/origen2', '/DAW2/proves/fitxer.txt', '/DAW2/imatges']
-desti = '/DAW2/copies'
+origens=['/home/eriiicc03/Documentos/DAW2/MP01 - Programació amb Frameworks/RA1. Python/DAW2/proves/origen1','/home/eriiicc03/Documentos/DAW2/MP01 - Programació amb Frameworks/RA1. Python/DAW2/proves/origen2', '/home/eriiicc03/Documentos/DAW2/MP01 - Programació amb Frameworks/RA1. Python/DAW2/proves/fitxer.txt', '/DAW2/imatges']
+desti = '/home/eriiicc03/Documentos/DAW2/MP01 - Programació amb Frameworks/RA1. Python/DAW2/copies'
 
 
 def copiaDades(origen, desti):
