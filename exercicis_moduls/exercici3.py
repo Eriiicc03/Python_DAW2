@@ -35,10 +35,63 @@ os.path.isdir(path)
 """
 
 import os
+import shutil
 import exercici1
-origen = '/home/eriiicc03/Documentos/DAW2/MP01 - Programació amb Frameworks/RA1. Python/DAW2/proves/fitxer.txt'
-desti = '/home/eriiicc03/Documentos/DAW2/MP01 - Programació amb Frameworks/RA1. Python/DAW2/copies'
 
+#origen = '/home/eriiicc03/Documentos/DAW2/MP01 - Programació amb Frameworks/RA1. Python/DAW2/proves/fitxer.txt'
+#desti = '/home/eriiicc03/Documentos/DAW2/MP01 - Programació amb Frameworks/RA1. Python/DAW2/copies'
+origens = ['/DAW2/proves/origen1', '/DAW2/proves/origen2', '/DAW2/proves/fitxer.txt']
+desti = '/DAW2/copies3'
 ncopies = 3
+destiRestaurar = '/DAW2/restaurat'
 
-exercici1.copiaDades(origen, desti)   
+
+def escullCarpeta(desti, ncopies):
+    # 1. Busquem la primera carpeta lliure
+    for element in range(1, ncopies + 1):
+        copia = os.path.join(desti, str(element))
+        if not os.path.isdir(copia):
+            return copia
+
+    # 2. Si no n'hi ha cap de lliure, busquem la més antiga
+    rutaMesAntiga = os.path.join(desti, "1")
+    tempsMesAntic = os.path.getmtime(rutaMesAntiga)
+    for element in range(1, ncopies + 1):
+        copia = os.path.join(desti, str(element))
+        if os.path.getmtime(copia) < tempsMesAntic:
+            rutaMesAntiga = copia
+            tempsMesAntic = os.path.getmtime(copia)
+    return rutaMesAntiga
+
+
+def fesCopia(origens, desti, ncopies):
+    carpeta = escullCarpeta(desti, ncopies)
+    if os.path.isdir(carpeta):
+        shutil.rmtree(carpeta)
+    os.makedirs(carpeta)
+    print("Fent la còpia a:", carpeta)
+    for origen in origens:
+        exercici1.copiaDades(origen, carpeta)
+
+
+def restauraCopia(desti, numCopia, destiRestaurar):
+    carpeta = os.path.join(desti, str(numCopia))
+    if os.path.isdir(carpeta):
+        print("Restaurant la còpia:", carpeta)
+        llista = os.listdir(carpeta)
+        for element in llista:
+            ruta = os.path.join(carpeta, element)
+            exercici1.copiaDades(ruta, destiRestaurar)
+    else:
+        print("No existeix la còpia", numCopia)
+
+
+if __name__ == '__main__':
+    opcio = input("1 = Fer còpia, 2 = Restaurar: ")
+    if opcio == "1":
+        fesCopia(origens, desti, ncopies)
+    elif opcio == "2":
+        numCopia = int(input(f"Quina còpia vols restaurar (1-{ncopies})? "))
+        restauraCopia(desti, numCopia, destiRestaurar)
+    else:
+        print("Opció no vàlida")
