@@ -50,9 +50,7 @@ def copiaDades(origen, desti):
         
     else:
         print(f"No existeix: {origen}")
-        
-    
-    
+
 if __name__ == '__main__':
     for recorre in origens:
         copiaDades(recorre,desti)

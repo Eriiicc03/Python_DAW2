@@ -78,6 +78,7 @@ def top_gastos(gastos, n=3):
     top = sorted(gastos, key=lambda gasto: gasto[1], reverse=True)
     return top[:n]
 
+
 def menu_gastos(fichero=FICHERO_GASTOS):
     """Menu para gestionar gastos
 
